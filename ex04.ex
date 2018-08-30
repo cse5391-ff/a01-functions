@@ -79,7 +79,20 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def even_odd(list), do: true
+  def _even_odd_tuple(true, val, { evens, odds }), do:
+    { [ val | evens ], odds }
+
+  def _even_odd_tuple(false, val, { evens, odds }), do:
+    { evens, [ val | odds ] }
+
+  def _even_odd_reverse({ evens, odds }), do:
+    { reverse(evens), reverse(odds) }
+
+  def _even_odd_reducer(curr, state), do:
+    _even_odd_tuple Integer.is_even(curr), curr, state
+
+  def even_odd(list), do:
+    _even_odd_reverse reduce(list, { [], [] }, &Ex04._even_odd_reducer/2)
 
 
 
