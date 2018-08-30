@@ -82,13 +82,13 @@ defmodule Ex03 do
       iex> Ex03.list_contains([ 1, 2, 3, 4], 3)
       true
 
-      iex> Ex03.list_contains([ 1, 2, 3, 4], 3)
-      true
+      iex> Ex03.list_contains([ 1, 2, 3, 4], 5)
+      false
 
   """
-  def list_contains([], num), do: false
-  def list_contains([h | t], num), do: list_contains(t, num) 
-  def list_contains([num | t], num), do: true
+  def list_contains([], _num), do: false
+  def list_contains([num | _t], num), do: true
+  def list_contains([_h | t], num), do: list_contains(t, num) 
 
   ##############################################################################
   # 3.3:  5 points #
@@ -112,7 +112,7 @@ defmodule Ex03 do
 
   """
 
-  def list_equal do end
+  def list_equal
 
 
 
