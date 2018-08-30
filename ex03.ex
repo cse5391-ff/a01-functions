@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+     > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -85,8 +85,8 @@ defmodule Ex03 do
 
   """
 
-  def list_contains([], val), do: false
-  def list_contains([ h | t ], h), do: true
+  def list_contains([], _val), do: false
+  def list_contains([ h | _t ], h), do: true
   def list_contains([ _h | t ], val), do: list_contains(t, val)
 
   ##############################################################################
@@ -114,8 +114,10 @@ defmodule Ex03 do
   def list_equal([], []), do: true
   def list_equal([ _h | _t ], []), do: false
   def list_equal([], [ _h | _t ]), do: false
-  def list_equal([ h | t1 ], [ h | t2 ]), do: true && list_equal(t1, t2)
-  def list_equal([ h1 | _t1 ], [ h2 | _t2 ]), do: h1 == h2
+  def list_equal([ h | t1 ], [ h | t2 ]), do: list_equal(t1, t2)
+
+  # this one must match last
+  def list_equal([ _h1 | _t1 ], [ _h2 | _t2 ]), do: false
 
 
 
@@ -163,7 +165,18 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won({}), do: true
+  def won({ mark, _, _, mark, _, _, mark, _, _ }), do: mark
+  def won({ _, mark, _, _, mark, _, _, mark, _ }), do: mark
+  def won({ _, _, mark, _, _, mark, _, _, mark }), do: mark
+
+  def won({ _, _, _, _, _, _, mark, mark, mark }), do: mark
+  def won({ _, _, _, mark, mark, mark, _, _, _ }), do: mark
+  def won({ mark, mark, mark, _, _, _, _, _, _ }), do: mark
+
+  def won({ mark, _, _, _, mark, _, _, _, mark }), do: mark
+  def won({ _, _, mark, _, mark, _, mark, _, _ }), do: mark
+
+  def won(_), do: false
 
 
   ###########################
