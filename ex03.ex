@@ -59,7 +59,16 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def odd_even([]), do: []
+  def odd_even([ h | t ]) do
+    [ res(Integer.is_even(h))| odd_even(t)]
+  end
+  def res(false) do
+    :odd
+  end
+  def res(true) do
+    :even
+  end
 
 
   ##############################################################################
@@ -80,8 +89,13 @@ defmodule Ex03 do
       true
 
   """
+  def list_contains([], _val), do: false
+  def list_contains([h|t], val) do
+    contains(h == val, t, val)
+  end
+  def contains(true, _t, _val), do: true
+  def contains(false, t, val), do: list_contains(t, val)
 
-  def list_contains . .. "your code"
 
   ##############################################################################
   # 3.3:  5 points #
@@ -104,8 +118,14 @@ defmodule Ex03 do
       false
 
   """
-
-  def list_equal . . . "your code"
+  def list_equal([], []), do: true
+  def list_equal([], _list), do: false
+  def list_equal(_list, []), do: false
+  def list_equal([h1 | t1], [h2 | t2]) do
+    equals(h1==h2, t1, t2)
+  end
+  def equals(true, t1, t2), do: list_equal(t1, t2)
+  def equals(false, _t1, _t2), do: false
 
 
 
@@ -153,7 +173,7 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  def won
 
 
   ###########################
