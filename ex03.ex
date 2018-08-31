@@ -36,9 +36,9 @@ defmodule Ex03 do
 
 
 
-      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
+       V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
   > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
-      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
+       ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
   ##############################################################################
