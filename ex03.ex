@@ -36,9 +36,9 @@ defmodule Ex03 do
 
 
 
-     V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
-     ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
+      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
+  > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
   ##############################################################################
@@ -59,7 +59,10 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def is_even_atom(true), do: :even
+  def is_even_atom(false), do: :odd
+  def odd_even([]), do: []
+  def odd_even([h | t]), do: [is_even_atom(Integer.is_even(h)) | odd_even(t)]
 
 
   ##############################################################################
@@ -81,7 +84,8 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains([], _num), do: false
+  def list_contains([h | t], num), do: h == num || list_contains(t,num)
 
   ##############################################################################
   # 3.3:  5 points #
@@ -104,8 +108,9 @@ defmodule Ex03 do
       false
 
   """
-
-  def list_equal . . . "your code"
+  def list_equal([], []), do: true
+  def list_equal([h1 | t1], [h2 | t2]), do: h1==h2 && list_equal(t1, t2)
+  def list_equal(_, _), do: false
 
 
 
@@ -153,7 +158,22 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  #horizontal matched
+  def won({xo, xo, xo, _, _, _, _, _, _}), do: xo
+  def won({_, _, _, xo, xo, xo, _, _, _}), do: xo
+  def won({_, _, _, _, _, _, xo, xo, xo}), do: xo
+
+  #vertical matches
+  def won({xo, _, _, xo, _, _, xo, _, _}), do: xo
+  def won({_, xo, _, _, xo, _, _, xo, _}), do: xo
+  def won({_, _, xo, _, _, xo, _, _, xo}), do: xo
+
+  #diagonal matches
+  def won({xo, _, _, _, xo, _, _, _, xo}), do: xo
+  def won({_, _, xo, _, xo, _, xo, _, _}), do: xo
+
+  #base case
+  def won(_), do: false
 
 
   ###########################
