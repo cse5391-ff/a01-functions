@@ -158,7 +158,7 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  #horizontal matched
+  #horizontal matches
   def won({xo, xo, xo, _, _, _, _, _, _}), do: xo
   def won({_, _, _, xo, xo, xo, _, _, _}), do: xo
   def won({_, _, _, _, _, _, xo, xo, xo}), do: xo
