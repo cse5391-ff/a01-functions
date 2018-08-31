@@ -172,7 +172,7 @@ defmodule Ex03 do
   def won({xo, _, _, _, xo, _, _, _, xo}), do: xo
   def won({_, _, xo, _, xo, _, xo, _, _}), do: xo
 
-  #base case
+  #default case (no winning case matched)
   def won(_), do: false
 
 
