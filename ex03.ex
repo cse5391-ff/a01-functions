@@ -62,8 +62,8 @@ defmodule Ex03 do
   def parity(true),  do: :even
   def parity(false), do: :odd
 
-  def odd_even([ h, h1 | _t ]) do
-    [ parity(Integer.is_even(h)) ] ++ odd_even([ h1 | _t ])
+  def odd_even([ h, h1 | t ]) do
+    [ parity(Integer.is_even(h)) ] ++ odd_even([ h1 | t ])
   end
   def odd_even([ h ]) do
     [ parity(Integer.is_even(h)) ]
