@@ -83,8 +83,22 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
+  def filter(true, [ h | t ], func) do
+    [ h | filter(t, func) ]
+  end
+  def filter(false, [ _h | t ], func) do
+    filter(t, func)
+  end
+
+  def filter([ h | t ], func) do
+    filter(func.(h), [ h | t ], func)
+  end
+
+  def filter([], _func), do: []
+
   def even_odd([ h | t ]) do
-    
+    { filter([ h | t ], &Integer.is_even&1), 
+      filter([ h | t ], &Integer.is_odd&1) }
   end
 
 
