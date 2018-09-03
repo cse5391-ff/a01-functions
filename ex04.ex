@@ -42,6 +42,8 @@ defmodule Ex04 do
   def reverse([ h | t ]) do
     reduce([ h | t ], [], fn(a,b) -> [a | b] end)
   end
+  # empty list edge case
+  def reverse([]), do: []
 
   ##############################################################################
   # 4.2:  5 points #
@@ -64,6 +66,8 @@ defmodule Ex04 do
         (a,b) when b < a -> b
       end)
   end
+  # empty list edge case
+  def min([]), do: []
 
   ##############################################################################
   # 4.3: 10 points #
@@ -89,17 +93,17 @@ defmodule Ex04 do
   def filter(false, [ _h | t ], func) do
     filter(t, func)
   end
-
   def filter([ h | t ], func) do
     filter(func.(h), [ h | t ], func)
   end
-
   def filter([], _func), do: []
 
   def even_odd([ h | t ]) do
     { filter([ h | t ], &Integer.is_even&1), 
       filter([ h | t ], &Integer.is_odd&1) }
   end
+  # empty list edge case
+  def even_odd([]), do: { [], [] }
 
 
 

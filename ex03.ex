@@ -65,9 +65,8 @@ defmodule Ex03 do
   def odd_even([ h, h1 | t ]) do
     [ parity(Integer.is_even(h)) ] ++ odd_even([ h1 | t ])
   end
-  def odd_even([ h ]) do
-    [ parity(Integer.is_even(h)) ]
-  end
+  def odd_even([ h ]), do: [ parity(Integer.is_even(h)) ]
+  def odd_even([]), do: []
 
 
   ##############################################################################
