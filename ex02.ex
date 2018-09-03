@@ -54,8 +54,8 @@ defmodule Ex02 do
   ################################################################
 
   first2equal = fn
-                [h, h | _t] -> true
-                [_h | _t] -> false
+                [ h, h | _t ] -> true
+                [ _h | _t ] -> false
               end
 
   assert  first2equal.([4, 4, 5, 6, 7])
