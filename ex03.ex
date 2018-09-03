@@ -59,7 +59,7 @@ defmodule Ex03 do
 
   """
 
-  def parity(true), do: :even
+  def parity(true),  do: :even
   def parity(false), do: :odd
 
   def odd_even([ h, h1 | _t ]) do
@@ -89,8 +89,8 @@ defmodule Ex03 do
 
   """
 
-  def list_contains([ ], _n), do: false
-  def list_contains([ n | _t], n), do: true
+  def list_contains([ ], _n),       do: false
+  def list_contains([ n | _t], n),  do: true
   def list_contains([ _h | t ], n), do: list_contains( t , n)
 
   ##############################################################################
@@ -197,8 +197,8 @@ defmodule Ex03 do
 
   def won({ _, _, m, 
             _, m, _, 
-            m, _, _}), do: m
-  # Otherwise
+            m, _, _ }), do: m
+  # Nobody Wins
   def won({ _, _, _, 
             _, _, _,
             _, _, _ }), do: false
