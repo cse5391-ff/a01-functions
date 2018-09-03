@@ -39,7 +39,7 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
-  def reverse([]), do: nil
+  def reverse([]), do: []
   def reverse(list), do: reduce(list, [], &[ &1 | &2 ])
 
 
@@ -78,8 +78,10 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def even_odd(list), do: list
-
+  def even_odd([]), do: nil
+  def even_odd(list), do: reduce(reverse(list), {[],[]}, fn(val, tuple) -> helper(Integer.is_even(val), val, tuple) end)
+  def helper(true, val, {even, odd}), do: { [val|even], odd}
+  def helper(false, val, {even, odd}), do: { even, [val|odd]}
 
 
 
