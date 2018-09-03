@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+  > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -63,7 +63,7 @@ defmodule Ex03 do
   def parity(false), do: :odd
 
   def odd_even([ h, h1 | _t ]) do
-    [ parity(Integer.is_even(h)) ] ++ odd_even([ h1 , _t ])
+    [ parity(Integer.is_even(h)) ] ++ odd_even([ h1 | _t ])
   end
   def odd_even([ h ]) do
     [ parity(Integer.is_even(h)) ]
@@ -114,8 +114,11 @@ defmodule Ex03 do
       false
 
   """
-
-  def list_equal . . . "your code"
+  def list_equal([ h ], [ h ]), do: true
+  def list_equal([ h | t1 ], [ h | t2 ]) do
+    list_equal([ t1 ], [ t2 ])
+  end
+  def list_equal([ _ | _ ], [ _ | _ ]), do: false
 
 
 
@@ -163,7 +166,42 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  # Horizontal
+  def won({ m, m, m,
+            _, _, _, 
+            _, _, _ }), do: m
+  
+  def won({ _, _, _, 
+            m, m, m, 
+            _, _, _ }), do: m
+  
+  def won({ _, _, _, 
+            _, _, _,
+            m, m, m }), do: m
+  # Vertical
+  def won({ m, _, _, 
+            m, _, _,
+            m, _, _ }), do: m
+  
+  def won({ _, m, _, 
+            _, m, _,
+            _, m, _ }), do: m
+  
+  def won({ _, _, m, 
+            _, _, m, 
+            _, _, m }), do: m
+  # Diagonal
+  def won({ m, _, _, 
+            _, m, _, 
+            _, _, m }), do: m
+
+  def won({ _, _, m, 
+            _, m, _, 
+            m, _, _}), do: m
+  # Otherwise
+  def won({ _, _, _, 
+            _, _, _,
+            _, _, _ }), do: false
 
 
   ###########################
