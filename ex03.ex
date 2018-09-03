@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+  > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -173,7 +173,15 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won
+  def won({x,x,x, _,_,_, _,_,_}), do: x
+  def won({_,_,_, x,x,x, _,_,_}), do: x
+  def won({_,_,_, _,_,_, x,x,x}), do: x
+  def won({x,_,_, x,_,_, x,_,_}), do: x
+  def won({_,x,_, _,x,_, _,x,_}), do: x
+  def won({_,_,x, _,_,x, _,_,x}), do: x
+  def won({x,_,_, _,x,_, _,_,x}), do: x
+  def won({_,_,x, _,x,_, x,_,_}), do: x
+  def won(_), do: false
 
 
   ###########################
