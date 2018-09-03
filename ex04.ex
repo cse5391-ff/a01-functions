@@ -39,7 +39,11 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
-  def reverse . . . "your code"
+  def reverse([ h | t ]) do
+    reduce([ h | t ], [], fn(a,b) -> [a | b] end)
+  end
+  # empty list edge case
+  def reverse([]), do: []
 
   ##############################################################################
   # 4.2:  5 points #
@@ -55,7 +59,15 @@ defmodule Ex04 do
 
   """
 
-  def min . . . "your code"
+  def min([ h | t ]) do 
+    reduce(t, h, 
+      fn
+        (a,b) when a < b -> a 
+        (a,b) when b < a -> b
+      end)
+  end
+  # empty list edge case
+  def min([]), do: []
 
   ##############################################################################
   # 4.3: 10 points #
@@ -75,7 +87,23 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def even_odd . . . "your code"
+  def filter(true, [ h | t ], func) do
+    [ h | filter(t, func) ]
+  end
+  def filter(false, [ _h | t ], func) do
+    filter(t, func)
+  end
+  def filter([ h | t ], func) do
+    filter(func.(h), [ h | t ], func)
+  end
+  def filter([], _func), do: []
+
+  def even_odd([ h | t ]) do
+    { filter([ h | t ], &Integer.is_even&1), 
+      filter([ h | t ], &Integer.is_odd&1) }
+  end
+  # empty list edge case
+  def even_odd([]), do: { [], [] }
 
 
 
