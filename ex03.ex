@@ -59,7 +59,15 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def parity(true), do: :even
+  def parity(false), do: :odd
+
+  def odd_even([ h, h1 | _t ]) do
+    [ parity(Integer.is_even(h)) ] ++ odd_even([ h1 , _t ])
+  end
+  def odd_even([ h ]) do
+    [ parity(Integer.is_even(h)) ]
+  end
 
 
   ##############################################################################
@@ -81,7 +89,9 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains([ ], _n), do: false
+  def list_contains([ n | _t], n), do: true
+  def list_contains([ _h | t ], n), do: list_contains( t , n)
 
   ##############################################################################
   # 3.3:  5 points #
