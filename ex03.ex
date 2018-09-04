@@ -109,11 +109,16 @@ defmodule Ex03 do
       false
       iex> Ex03.list_equal [ 1, 2, 3 ], [3, 2, 1]
       false
+      iex> Ex03.list_equal [ 1, 2, 3, 4 ], [1, 2, 3]
+      false
 
   """
 
-  def list_equal
-
+  def list_equal(h, h), do: true
+  def list_equal([h | t1], [h | t2]), do: list_equal(t1, t2)
+  def list_equal([_h | _t1], [_g | _t2]), do: false
+  def list_equal([], [_]), do: false
+  def list_equal([_], []), do: false
 
 
   ##############################################################################
@@ -159,10 +164,17 @@ defmodule Ex03 do
 
   Think a little about a nice way to lay this code out.
   """
+  def won({_, x , _, _, x, _, _, x, _}), do: x
+  def won({x, _ , _, x, _, _, x, _, _}), do: x
+  def won({_, _ , x, x, _, _, x, _, x}), do: x
 
-  def won do end
+  def won({x, x , x, _, _, _, _, _, _}), do: x
+  def won({_, _ , _, x, x, x, _, _, _}), do: x
+  def won({_, _ , _, _, _, _, x, x, x}), do: x
 
-
+  def won({x, _ , _, _, x, _, _, _, x}), do: x
+  def won({_, _ , x, _, x, _, x, _, _}), do: x
+  def won({_, _, _, _, _, _, _, _, _}), do: false
   ###########################
   # IGNORE FROM HERE TO END #
   ###########################
