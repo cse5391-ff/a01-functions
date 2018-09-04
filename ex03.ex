@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+    > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -59,7 +59,9 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def odd_even([h|t]), do: [check_oe(h)|odd_even(t)]
+  def check_oe(Integer.is_even(h)), do: :even
+  def check_oe(Integer.is_odd(h)), do: :odd
 
 
   ##############################################################################
