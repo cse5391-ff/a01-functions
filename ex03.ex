@@ -59,9 +59,12 @@ defmodule Ex03 do
 
   """
 
-  def odd_even([h|t]), do: [check_oe(h)|odd_even(t)]
-  defp check_oe(Integer.is_even(h)), do: :even
-  defp check_oe(Integer.is_odd(h)), do: :odd
+#   for a given list, call the private function on the head
+#   make recursive call on the tail
+  def odd_even([h|t]), do: [check_even(Integer.is_even(h))|odd_even(t)]
+#   private functions that will return atoms :even or :odd
+  def check_even(true), do: :even
+  def check_even(false), do: :odd
 
 
   ##############################################################################
@@ -85,9 +88,9 @@ defmodule Ex03 do
 #   Base Case -> Go through all the list and see no match
   def list_contains([]), do: false
 #   if current head does not match the num, go to the next element
-  def list_contains([h|t], num), do: list_contains(t,num)
+  def list_contains([_h|t], num), do: list_contains(t,num)
 #   if current head == element, return true
-  def list_contains([h|t],h), do: true
+#   def list_contains([h|_t],h), do: true
 
   ##############################################################################
   # 3.3:  5 points #
@@ -111,7 +114,14 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+#   Base Case -> if numbers do not match on the lists
+  def list_equal([[_h|_t], []]), do: false
+#   if the head elements are different, false
+  def list_equal([[_h|_t],[_h1|_t2]]), do: false
+#   if it comes down to empty lists, return true
+  def list_equal([],[]), do: true
+#   tail recursion
+  def list_equal([h1|t1],[h1|t2]), do: list_equal([t1],[t2])
 
 
 
@@ -159,7 +169,27 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+#   Inspired by a Fizzbuzz solution from:
+# https://www.leighhalliday.com/fizzbuzz-in-elixir
+
+# Base case -> False
+
+#   h[123, 456, 789]
+    def won({win, win, win, _, _, _, _, _, _}), do: win
+    def won({_, _, _, win, win, win, _, _, _}), do: win
+    def won({_, _, _, _, _, _, win, win, win}), do: win
+
+#   v[147, 258, 369]
+    def won({win, _, _, win, _, _, win, _, _}), do: win
+    def won({_, win, _, _, win, _, _, win, _}), do: win
+    def won({_, _, win, _, _, win, _, _, win}), do: win
+
+#   d[159, 357]
+    def won({win, _, _, _, win, _, _, _, win}), do: win
+    def won({_, _, win, _, win, _, win, _, _}), do: win
+
+#   For any other case
+    def won(_), do: false
 
 
   ###########################
