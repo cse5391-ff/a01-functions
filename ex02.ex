@@ -3,7 +3,7 @@ Code.load_file "support.ex"
 
 defmodule Ex02 do
   use ExUnit.Case
-  import Support
+  #import Support
 
   ##############################################################################
   # 2: 3 questions,  15 points available
@@ -30,7 +30,7 @@ defmodule Ex02 do
   # numbers, and second should be the difference                         #
   ########################################################################
 
-  list2a = your_anonymous_function(1, 2)
+  list2a = fn (val1, val2) -> [val1 + val2, val1 - val2] end
 
   assert list2a.(1, 2)    == [ 3, -1 ]
   assert list2a.(-1, 100) == [ 99, -101 ]
@@ -41,7 +41,7 @@ defmodule Ex02 do
   # Do the same using the & syntax #
   ##################################
 
-  list2b = your_anonymous_function(1, 2)
+  list2b = &([&1 + &2, &1 - &2])
 
   assert list2b.(1, 2)    == [ 3, -1 ]
   assert list2b.(-1, 100) == [ 99, -101 ]
@@ -53,7 +53,7 @@ defmodule Ex02 do
   # if the first two elements of a list are equal                #
   ################################################################
 
-  first2equal = your_anonymous_function([])
+  first2equal = fn ([h1, h2 | _rest]) -> h1 == h2 end
 
 
   assert  first2equal.([4, 4, 5, 6, 7])
