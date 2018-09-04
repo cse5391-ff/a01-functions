@@ -60,8 +60,8 @@ defmodule Ex03 do
   """
 
   def odd_even([h|t]), do: [check_oe(h)|odd_even(t)]
-  def check_oe(Integer.is_even(h)), do: :even
-  def check_oe(Integer.is_odd(h)), do: :odd
+  defp check_oe(Integer.is_even(h)), do: :even
+  defp check_oe(Integer.is_odd(h)), do: :odd
 
 
   ##############################################################################
@@ -82,8 +82,12 @@ defmodule Ex03 do
       true
 
   """
-
-  def list_contains . .. "your code"
+#   Base Case -> Go through all the list and see no match
+  def list_contains([]), do: false
+#   if current head does not match the num, go to the next element
+  def list_contains([h|t], num), do: list_contains(t,num)
+#   if current head == element, return true
+  def list_contains([h|t],h), do: true
 
   ##############################################################################
   # 3.3:  5 points #
