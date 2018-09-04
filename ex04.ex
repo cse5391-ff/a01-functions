@@ -39,7 +39,7 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
-  def reverse . . . "your code"
+  def reverse(list), do: reduce(list, [], &([ &1 | &2 ]))
 
   ##############################################################################
   # 4.2:  5 points #
@@ -55,7 +55,10 @@ defmodule Ex04 do
 
   """
 
-  def min . . . "your code"
+  def _min(true, a, _b),  do: a
+  def _min(false, _a, b), do: b
+
+  def min([ h | t ]), do: reduce(t, h, &((&1 < &2) |> _min(&1, &2)))
 
   ##############################################################################
   # 4.3: 10 points #
@@ -68,17 +71,16 @@ defmodule Ex04 do
   above. Feel free to write helper functions if you want.
 
       iex> Ex04.even_odd [ 1, 2, 3, 4, 5 ]
-      { [ 2, 4],  [ 1, 3, 5 ] }
+      { [ 2, 4 ],  [ 1, 3, 5 ] }
 
   Hint: you're taking a list and converting it into something else. What function
   helps you do that. And, if you use that function, what does it return? That
   return value will be the thing you have to manipulate.
   """
-
-  def even_odd . . . "your code"
-
-
-
+  def odd?(true, num, [even, odd]),   do: [even, [num | odd]]
+  def odd?(false, num, [even, odd]),  do: [[num | even], odd]
+  def segment([a, b]), do: {reverse(a), reverse(b)}
+  def even_odd(list), do: reduce(list, [[], []], &(Integer.is_odd(&1) |> odd?(&1, &2))) |> segment
 
   ###########################
   # IGNORE FROM HERE TO END #
