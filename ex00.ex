@@ -36,6 +36,7 @@ defmodule Ex00 do
   # Write a function that increments its numeric parameter #
   ##########################################################
 
+  # Freebees
   inc = fn number -> number+1 end
 
   assert inc.(2)  == 3

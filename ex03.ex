@@ -179,18 +179,34 @@ defmodule Ex03 do
 #   https://www.leighhalliday.com/fizzbuzz-in-elixir
 
 #   h[123, 456, 789]
-    def won({win, win, win, _, _, _, _, _, _}), do: win
-    def won({_, _, _, win, win, win, _, _, _}), do: win
-    def won({_, _, _, _, _, _, win, win, win}), do: win
+def won({w, w, w,
+         _, _, _,
+         _, _, _}), do: w
+def won({_, _, _,
+         w, w, w,
+         _, _, _}), do: w
+def won({_, _, _,
+         _, _, _,
+         w, w, w}), do: w
 
 #   v[147, 258, 369]
-    def won({win, _, _, win, _, _, win, _, _}), do: win
-    def won({_, win, _, _, win, _, _, win, _}), do: win
-    def won({_, _, win, _, _, win, _, _, win}), do: win
+def won({w, _, _,
+         w, _, _,
+         w, _, _}), do: w
+def won({_, w, _,
+         _, w, _,
+         _, w, _}), do: w
+def won({_, _, w,
+         _, _, w,
+         _, _, w}), do: w
 
 #   d[159, 357]
-    def won({win, _, _, _, win, _, _, _, win}), do: win
-    def won({_, _, win, _, win, _, win, _, _}), do: win
+def won({w, _, _,
+         _, w, _,
+         _, _, w}), do: w
+def won({_, _, w,
+         _, w, _,
+         w, _, _}), do: w
 
 #   For any other case
     def won(_), do: false

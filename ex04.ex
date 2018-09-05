@@ -57,7 +57,7 @@ defmodule Ex04 do
 
   """
 
-#   Help from following question
+#   Format from following question
 #   https://elixirforum.com/t/anonymous-functions-with-multiple-body/3721/3
   def min([h|t]), do: reduce([h|t], fn
     h,t when h < t -> h
@@ -83,9 +83,13 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def even_odd
-
-
+#   If the head is even, add the element to the even list. Else add to odd.
+#   used list concat operater ++/2 from https://elixirschool.com/en/lessons/basics/collections/
+  def eo_helper(h, {even, odd}) when Integer.is_even(h) == true, do: {even ++ [h], odd}
+  def eo_helper(h, {even, odd}) when Integer.is_even(h) == false, do: {even, odd ++ [h]}
+#   call the reduce/3 function so it would return the state
+#   format helper function in &Mod.fun/arity form where arity = 2
+  def even_odd(list), do: reduce(list, {[],[]}, &eo_helper/2)
 
 
   ###########################
