@@ -39,7 +39,9 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
-  def reverse . . . "your code"
+
+#   from line 21
+  def reverse(list), do: reduce(list, [], &[&1|&2])
 
   ##############################################################################
   # 4.2:  5 points #
@@ -55,7 +57,13 @@ defmodule Ex04 do
 
   """
 
-  def min . . . "your code"
+#   Help from following question
+#   https://elixirforum.com/t/anonymous-functions-with-multiple-body/3721/3
+  def min([h|t]), do: reduce([h|t], fn
+    h,t when h < t -> h
+    h,t when h > t -> t
+  end)
+
 
   ##############################################################################
   # 4.3: 10 points #
@@ -75,7 +83,7 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def even_odd . . . "your code"
+  def even_odd
 
 
 

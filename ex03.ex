@@ -59,10 +59,14 @@ defmodule Ex03 do
 
   """
 
-#   for a given list, call the private function on the head
+#   for a given list, call the function on the head
 #   make recursive call on the tail
+
+# edge case for empty list
+  def odd_even([]), do: []
   def odd_even([h|t]), do: [check_even(Integer.is_even(h))|odd_even(t)]
-#   private functions that will return atoms :even or :odd
+#   functions that will return atoms :even or :odd
+#   cannot call Integer.is_even here, so call it in odd_even and return the result
   def check_even(true), do: :even
   def check_even(false), do: :odd
 
@@ -86,11 +90,13 @@ defmodule Ex03 do
 
   """
 #   Base Case -> Go through all the list and see no match
-  def list_contains([]), do: false
+  def list_contains([], _num), do: false
+
+#   if current head == element, return true
+  def list_contains([h|_t],h), do: true
+
 #   if current head does not match the num, go to the next element
   def list_contains([_h|t], num), do: list_contains(t,num)
-#   if current head == element, return true
-#   def list_contains([h|_t],h), do: true
 
   ##############################################################################
   # 3.3:  5 points #
@@ -114,14 +120,14 @@ defmodule Ex03 do
 
   """
 
-#   Base Case -> if numbers do not match on the lists
-  def list_equal([[_h|_t], []]), do: false
-#   if the head elements are different, false
-  def list_equal([[_h|_t],[_h1|_t2]]), do: false
-#   if it comes down to empty lists, return true
+#   base case -> if it comes down to empty lists, return true
   def list_equal([],[]), do: true
+#   if one element is left and they are the same, return true
+  def list_equal([h],[h]), do: true
 #   tail recursion
-  def list_equal([h1|t1],[h1|t2]), do: list_equal([t1],[t2])
+  def list_equal([h|t1],[h|t2]), do: list_equal([t1],[t2])
+#   most general case -> If all failes to return true, return false
+  def list_equal([_|_], [_|_]), do: false
 
 
 
@@ -170,9 +176,7 @@ defmodule Ex03 do
   """
 
 #   Inspired by a Fizzbuzz solution from:
-# https://www.leighhalliday.com/fizzbuzz-in-elixir
-
-# Base case -> False
+#   https://www.leighhalliday.com/fizzbuzz-in-elixir
 
 #   h[123, 456, 789]
     def won({win, win, win, _, _, _, _, _, _}), do: win
