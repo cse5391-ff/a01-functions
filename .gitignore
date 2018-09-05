@@ -4,3 +4,6 @@ Elixir.Ex*.beam
 
 # exclude practice file
 funxtionref.ex
+
+# test script
+runalltest.sh

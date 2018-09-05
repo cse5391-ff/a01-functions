@@ -87,7 +87,7 @@ defmodule Ex04 do
 #   used list concat operater ++/2 from https://elixirschool.com/en/lessons/basics/collections/
   def eo_helper(h, {even, odd}) when Integer.is_even(h) == true, do: {even ++ [h], odd}
   def eo_helper(h, {even, odd}) when Integer.is_even(h) == false, do: {even, odd ++ [h]}
-#   call the reduce/3 function so it would return the state
+#   call reduce/3 function so it would return the state
 #   format helper function in &Mod.fun/arity form where arity = 2
   def even_odd(list), do: reduce(list, {[],[]}, &eo_helper/2)
 
