@@ -88,10 +88,9 @@ defmodule Ex01 do
   # function. The examples below will make this clearer :)               #
   ########################################################################
 
-  create_adder = fn(n) -> fn(m) -> n+m end end
-  # function(n), do: function2(input) end end
-  # fn(n), do: fn(n, n2) -> n+n2 end end
-  # fn(n) ->
+  # create_adder = fn(n) -> fn(m) -> n+m end end
+  create_adder = fn(n) -> &(&1+n) end
+
 
   add_2  = create_adder.(2)
   add_99 = create_adder.(99)
