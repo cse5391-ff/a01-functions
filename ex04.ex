@@ -39,7 +39,7 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
-  def reverse . . . "your code"
+  def reverse(list), do: list |> reduce([], &([ &1 | &2 ]))
 
   ##############################################################################
   # 4.2:  5 points #
@@ -55,7 +55,15 @@ defmodule Ex04 do
 
   """
 
-  def min . . . "your code"
+  def min(list), do: list |> reduce( &(min_number(&1, &2)) )
+
+  defp min_number(n1, n2) do
+    if n1 < n2 do 
+      n1 
+    else 
+      n2
+    end
+  end
 
   ##############################################################################
   # 4.3: 10 points #
@@ -75,10 +83,29 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def even_odd . . . "your code"
+  def even_odd(list), do: { list |> filter(&Integer.is_even/1) , list |> filter(&Integer.is_odd/1) }
 
+  defp filter(list, bool_func) do
 
+    bool_reducer = bool_func |> create_bool_reducer
 
+    list 
+    |> reduce([], bool_reducer)
+    |> reverse()
+
+  end
+
+  defp create_bool_reducer(bool_func) do
+
+    fn element, list ->
+      if bool_func.(element) do
+        [ element | list ]
+      else
+        list
+      end
+    end
+
+  end
 
   ###########################
   # IGNORE FROM HERE TO END #
