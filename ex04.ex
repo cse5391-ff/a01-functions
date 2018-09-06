@@ -27,7 +27,6 @@ defmodule Ex04 do
   def reduce([ ], state, _func),       do: state
   def reduce([ h | t ], state, func),  do: reduce(t, func.(h, state), func)
 
-
   ##############################################################################
   # 4.1:  5 points #
   ##################
@@ -39,6 +38,7 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
+
   def reverse(list), do: list |> reduce([], &([ &1 | &2 ]))
 
   ##############################################################################
@@ -55,15 +55,7 @@ defmodule Ex04 do
 
   """
 
-  def min(list), do: list |> reduce( &(min_number(&1, &2)) )
-
-  defp min_number(n1, n2) do
-    if n1 < n2 do 
-      n1 
-    else 
-      n2
-    end
-  end
+  def min(list), do: list |> reduce( &(if &1 < &2, do: &1, else: &2) )
 
   ##############################################################################
   # 4.3: 10 points #
@@ -82,30 +74,21 @@ defmodule Ex04 do
   helps you do that. And, if you use that function, what does it return? That
   return value will be the thing you have to manipulate.
   """
+  
+  def even_odd(list) do 
+    { 
+      list |> filter(&Integer.is_even/1), 
+      list |> filter(&Integer.is_odd/1) 
+    }
+  end
 
-  def even_odd(list), do: { list |> filter(&Integer.is_even/1) , list |> filter(&Integer.is_odd/1) }
-
-  defp filter(list, bool_func) do
-
-    bool_reducer = bool_func |> create_bool_reducer
-
+  defp filter(list, bool_func) do 
     list 
-    |> reduce([], bool_reducer)
+    |> reduce([], create_bool_reducer(bool_func))
     |> reverse()
-
   end
 
-  defp create_bool_reducer(bool_func) do
-
-    fn element, list ->
-      if bool_func.(element) do
-        [ element | list ]
-      else
-        list
-      end
-    end
-
-  end
+  defp create_bool_reducer(bool_func), do: fn element, list -> if bool_func.(element), do: [ element | list ], else: list end
 
   ###########################
   # IGNORE FROM HERE TO END #

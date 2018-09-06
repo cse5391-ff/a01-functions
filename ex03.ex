@@ -58,18 +58,20 @@ defmodule Ex03 do
   be used if needed.)
 
   """
+
   def map([], _func), do: []
   def map([ h | t ], func), do: [ func.(h) | map(t, func) ]
 
   def odd_even(list) do 
-    num_to_atom = fn n ->
-      cond do
-          Integer.is_odd(n)  -> :odd 
-          Integer.is_even(n) -> :even
-      end
-    end
+    list 
+    |> map(num_to_odd_even_atom)
+  end
 
-    list |> map(num_to_atom)
+  defp num_to_odd_even_atom(n) do
+    cond do
+      Integer.is_odd(n)  -> :odd 
+      Integer.is_even(n) -> :even
+    end
   end
 
   ##############################################################################
@@ -90,6 +92,7 @@ defmodule Ex03 do
       true
 
   """
+  
   def list_contains([], _n), do: false
   def list_contains([n | _t], n), do: true
   def list_contains([_h | t], n), do: t |> list_contains(n)
