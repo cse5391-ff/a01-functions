@@ -64,7 +64,7 @@ defmodule Ex03 do
 
   def odd_even(list) do 
     list 
-    |> map(num_to_odd_even_atom)
+    |> map(&num_to_odd_even_atom/1)
   end
 
   defp num_to_odd_even_atom(n) do
