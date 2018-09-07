@@ -53,9 +53,8 @@ defmodule Ex02 do
   # if the first two elements of a list are equal                #
   ################################################################
 
-  # Remove warning with _t2
-  first2equal = fn([h | [t | _t2]]) -> h == t end
-
+  # Remove warning with _rest
+  first2equal = fn([h | [t | _rest]]) -> h == t end
 
   assert  first2equal.([4, 4, 5, 6, 7])
   assert !first2equal.([4, 5, 6, 7, 8])

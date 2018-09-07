@@ -66,8 +66,8 @@ defmodule Ex03 do
 
   def odd_even([ ]),     do: [ ]
   def odd_even([h|t]),   do: [check_even(Integer.is_even(h)) | odd_even(t)]
-  def check_even(true),  do: : even
-  def check_even(false), do: : odd
+  def check_even(true),  do: :even
+  def check_even(false), do: :odd
 
 
   ##############################################################################
