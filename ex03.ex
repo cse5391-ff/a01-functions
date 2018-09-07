@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+    > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -59,7 +59,15 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+#   Edge case for empty list
+#   Tail recursion to traverse the list
+#   Helper functions that will return atoms :even or :odd
+#   Cannot call Integer.is_even in the helper, so call it in odd_even and return the result
+
+  def odd_even([ ]),     do: [ ]
+  def odd_even([h|t]),   do: [check_even(Integer.is_even(h)) | odd_even(t)]
+  def check_even(true),  do: :even
+  def check_even(false), do: :odd
 
 
   ##############################################################################
@@ -80,8 +88,13 @@ defmodule Ex03 do
       true
 
   """
+#   Base Case -> Match fails when all elements in a list is checked
+#   If current head == element, return true
+#   Tail recursion to traverse the list
 
-  def list_contains . .. "your code"
+  def list_contains([ ], _num),   do: false
+  def list_contains([h|_t], h),   do: true
+  def list_contains([_h|t], num), do: list_contains(t, num)
 
   ##############################################################################
   # 3.3:  5 points #
@@ -105,7 +118,15 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+#   Edge case -> if the lists are empty to start with
+#   Base case -> if one element is left and they are the same, return true
+#   Tail recursion to traverse the list
+#   Most general case -> If all failes to return true, return false
+
+  def list_equal([ ], [ ]),       do: true
+  def list_equal([h], [h]),       do: true
+  def list_equal([h|t1], [h|t2]), do: list_equal([t1], [t2])
+  def list_equal([_|_], [_|_]),   do: false
 
 
 
@@ -153,7 +174,41 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+#   Inspired by a Fizzbuzz solution from:
+#   https://www.leighhalliday.com/fizzbuzz-in-elixir
+
+#   h[123, 456, 789]
+def won({w, w, w,
+         _, _, _,
+         _, _, _}), do: w
+def won({_, _, _,
+         w, w, w,
+         _, _, _}), do: w
+def won({_, _, _,
+         _, _, _,
+         w, w, w}), do: w
+
+#   v[147, 258, 369]
+def won({w, _, _,
+         w, _, _,
+         w, _, _}), do: w
+def won({_, w, _,
+         _, w, _,
+         _, w, _}), do: w
+def won({_, _, w,
+         _, _, w,
+         _, _, w}), do: w
+
+#   d[159, 357]
+def won({w, _, _,
+         _, w, _,
+         _, _, w}), do: w
+def won({_, _, w,
+         _, w, _,
+         w, _, _}), do: w
+
+#   For any other case
+def won(_), do: false
 
 
   ###########################
