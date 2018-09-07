@@ -3,7 +3,7 @@ Code.load_file "support.ex"
 
 defmodule Ex01 do
   use ExUnit.Case
-  import Support
+  # import Support
 
   ##############################################################################
   # 1: 5 questions,  30 points available                                       #
@@ -36,7 +36,7 @@ defmodule Ex01 do
   # Write a function that adds two numbers using fn syntax #
   ##########################################################
 
-  sum2a = fn(a,b) -> a+b end
+  sum2a = fn(a,b) -> a + b end
 
   assert sum2a.(1, 2)    == 3
   assert sum2a.(-1, 100) == 99
@@ -47,7 +47,7 @@ defmodule Ex01 do
   # Write a function that adds two numbers using & syntax  #
   ##########################################################
 
-  sum2b = &(&1+&2)
+  sum2b = &(&1 + &2)
 
   assert sum2b.(1, 2)    == 3
   assert sum2b.(-1, 100) == 99
@@ -61,7 +61,7 @@ defmodule Ex01 do
   #####################################################################
 
   # Rewrite with Pipe Operator
-  sum3a = fn(a,b,c) -> sum2a.(a,b) |> sum2a.(c) end
+  sum3a = fn(a, b, c) -> sum2a.(a, b) |> sum2a.(c) end
 
   assert sum3a.(1, 3, 5)  == 9
   assert sum3a.(1, -3, 5) == 3
@@ -73,7 +73,7 @@ defmodule Ex01 do
   ####################################
 
   # Rewrite with Pipe Operator
-  sum3b = &(sum2b.(&1,&2) |> sum2b.(&3))
+  sum3b = &( sum2b.(&1, &2) |> sum2b.(&3) )
 
   assert sum3b.(1, 3, 5)  == 9
   assert sum3b.(1, -3, 5) == 3
@@ -89,7 +89,7 @@ defmodule Ex01 do
   ########################################################################
 
   # create_adder = fn(n) -> fn(m) -> n+m end end
-  create_adder = fn(n) -> &(&1+n) end
+  create_adder = fn(n) -> &( &1 + n ) end
 
 
   add_2  = create_adder.(2)

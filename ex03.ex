@@ -59,16 +59,15 @@ defmodule Ex03 do
 
   """
 
-#   for a given list, call the function on the head
-#   make recursive call on the tail
+#   Edge case for empty list
+#   Tail recursion to traverse the list
+#   Helper functions that will return atoms :even or :odd
+#   Cannot call Integer.is_even in the helper, so call it in odd_even and return the result
 
-# edge case for empty list
-  def odd_even([]), do: []
-  def odd_even([h|t]), do: [check_even(Integer.is_even(h))|odd_even(t)]
-#   functions that will return atoms :even or :odd
-#   cannot call Integer.is_even here, so call it in odd_even and return the result
-  def check_even(true), do: :even
-  def check_even(false), do: :odd
+  def odd_even([ ]),     do: [ ]
+  def odd_even([h|t]),   do: [check_even(Integer.is_even(h)) | odd_even(t)]
+  def check_even(true),  do: : even
+  def check_even(false), do: : odd
 
 
   ##############################################################################
@@ -89,14 +88,13 @@ defmodule Ex03 do
       true
 
   """
-#   Base Case -> Go through all the list and see no match
-  def list_contains([], _num), do: false
+#   Base Case -> Match fails when all elements in a list is checked
+#   If current head == element, return true
+#   Tail recursion to traverse the list
 
-#   if current head == element, return true
-  def list_contains([h|_t],h), do: true
-
-#   if current head does not match the num, go to the next element
-  def list_contains([_h|t], num), do: list_contains(t,num)
+  def list_contains([ ], _num),   do: false
+  def list_contains([h|_t], h),   do: true
+  def list_contains([_h|t], num), do: list_contains(t, num)
 
   ##############################################################################
   # 3.3:  5 points #
@@ -120,14 +118,15 @@ defmodule Ex03 do
 
   """
 
-#   base case -> if it comes down to empty lists, return true
-  def list_equal([],[]), do: true
-#   if one element is left and they are the same, return true
-  def list_equal([h],[h]), do: true
-#   tail recursion
-  def list_equal([h|t1],[h|t2]), do: list_equal([t1],[t2])
-#   most general case -> If all failes to return true, return false
-  def list_equal([_|_], [_|_]), do: false
+#   Edge case -> if the lists are empty to start with
+#   Base case -> if one element is left and they are the same, return true
+#   Tail recursion to traverse the list
+#   Most general case -> If all failes to return true, return false
+
+  def list_equal([ ], [ ]),       do: true
+  def list_equal([h], [h]),       do: true
+  def list_equal([h|t1], [h|t2]), do: list_equal([t1], [t2])
+  def list_equal([_|_], [_|_]),   do: false
 
 
 
@@ -209,7 +208,7 @@ def won({_, _, w,
          w, _, _}), do: w
 
 #   For any other case
-    def won(_), do: false
+def won(_), do: false
 
 
   ###########################

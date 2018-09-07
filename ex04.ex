@@ -41,7 +41,7 @@ defmodule Ex04 do
   """
 
 #   from line 21
-  def reverse(list), do: reduce(list, [], &[&1|&2])
+  def reverse(list), do: reduce(list, [ ], &[ &1 | &2 ])
 
   ##############################################################################
   # 4.2:  5 points #
@@ -57,9 +57,9 @@ defmodule Ex04 do
 
   """
 
-#   Format from following question
+#   Format of multi-body anonymous function from following question
 #   https://elixirforum.com/t/anonymous-functions-with-multiple-body/3721/3
-  def min([h|t]), do: reduce([h|t], fn
+  def min([ h | t ]), do: reduce([ h | t ], fn
     h,t when h < t -> h
     h,t when h > t -> t
   end)
@@ -83,8 +83,11 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-#   If the head is even, add the element to the even list. Else add to odd.
-#   used list concat operater ++/2 from https://elixirschool.com/en/lessons/basics/collections/
+#   List concat operater notation ++/2 from
+#   https://elixirschool.com/en/lessons/basics/collections/
+#   Call reduce/3 function so it would return the state {even_list, odd_list} as described in the hint
+#   Helper function in &Mod.fun/arity form
+
   def eo_helper(h, {even, odd})
     when Integer.is_even(h),
     do: {even ++ [h], odd}
@@ -92,10 +95,9 @@ defmodule Ex04 do
   def eo_helper(h, {even, odd})
     when Integer.is_odd(h),
     do: {even, odd ++ [h]}
-#   call reduce/3 function so it would return the state
-#   format helper function in &Mod.fun/arity form where arity = 2
+
   def even_odd(list),
-    do: reduce(list, {[],[]}, &eo_helper/2)
+    do: reduce(list, {[ ], [ ]}, &eo_helper/2)
 
 
   ###########################
