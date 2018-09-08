@@ -39,7 +39,7 @@ defmodule Ex04 do
 
   """
 
-  def reverse( list ), do: list |> reduce([], &[ &1 | &2 ])
+  def reverse( list ), do: list |> reduce( [], &[ &1 | &2 ] )
 
   ##############################################################################
   # 4.2:  5 points #
@@ -55,8 +55,16 @@ defmodule Ex04 do
 
   """
 
-  def min do
+  def min( [ head | tail ] ) do
+    func = fn( a, b ) ->
+        if( a < b ) do
+            a
+        else
+            b
+        end
+    end
 
+    reduce( tail, head, func)
   end
 
   ##############################################################################
