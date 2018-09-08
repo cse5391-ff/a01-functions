@@ -1,5 +1,5 @@
-ExUnit.start
-Code.load_file "support.ex"
+ExUnit.start()
+Code.load_file("support.ex")
 
 defmodule Ex00 do
   use ExUnit.Case
@@ -18,7 +18,6 @@ defmodule Ex00 do
   # Is it written in a functional, Elixir style? . . . 20%                     #
   ##############################################################################
 
-
   @moduledoc """
 
   All the exercises should be solved using anonymous functions.
@@ -36,10 +35,8 @@ defmodule Ex00 do
   # Write a function that increments its numeric parameter #
   ##########################################################
 
-  inc = your_anonymous_function(1)
+  inc = &(&1 + 1)
 
-  assert inc.(2)  == 3
+  assert inc.(2) == 3
   assert inc.(-1) == 0
 end
-
-
