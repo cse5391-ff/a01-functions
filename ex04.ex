@@ -59,6 +59,7 @@ defmodule Ex04 do
 
 #   Format of multi-body anonymous function from following question
 #   https://elixirforum.com/t/anonymous-functions-with-multiple-body/3721/3
+
   def min([ h | t ]), do: reduce([ h | t ], fn
     h,t when h < t -> h
     h,t when h > t -> t
