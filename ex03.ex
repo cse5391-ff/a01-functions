@@ -59,9 +59,7 @@ defmodule Ex03 do
 
   """
 
-  def odd_even( [] ) do
-    []
-  end
+  def odd_even( [] ), do: []
 
   def odd_even( list ) do
     [ currElement | rest ] = list
@@ -91,9 +89,8 @@ defmodule Ex03 do
       true
 
   """
-  def list_contains( [], _value ) do
-    false
-  end
+
+  def list_contains( [], _value ), do: false
 
   def list_contains( list, value ) do
     [ currElement | rest ] = list
@@ -127,8 +124,19 @@ defmodule Ex03 do
 
   """
 
-  def list_equal do
+  def list_equal( []    , []     ), do: true 
+  def list_equal( []    , _list2 ), do: false
+  def list_equal( _list1, []     ), do: false
 
+  def list_equal( list1, list2 ) do
+    [ currElement1 | rest1 ] = list1
+    [ currElement2 | rest2 ] = list2
+    
+    if ( currElement1 != currElement2 ) do
+      false
+    else
+      list_equal( rest1, rest2 )    
+    end
   end
 
 
