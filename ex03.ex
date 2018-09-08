@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+  > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -59,8 +59,20 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def map([], _func), do: []
+  def map([ h | t ], func), do: [ func.(h) | map(t, func) ]
 
+  def odd_even(list) do 
+    list 
+    |> map(&num_to_odd_even_atom/1)
+  end
+
+  defp num_to_odd_even_atom(n) do
+    cond do
+      Integer.is_odd(n)  -> :odd 
+      Integer.is_even(n) -> :even
+    end
+  end
 
   ##############################################################################
   # 3.2:  5 points #
@@ -80,8 +92,10 @@ defmodule Ex03 do
       true
 
   """
-
-  def list_contains . .. "your code"
+  
+  def list_contains([], _n), do: false
+  def list_contains([n | _t], n), do: true
+  def list_contains([_h | t], n), do: t |> list_contains(n)
 
   ##############################################################################
   # 3.3:  5 points #
@@ -105,9 +119,15 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+  # Assuming following pattern isnt allowed: [h | t], [h | t]
 
+  def list_equal([], []), do: true
 
+  def list_equal([], [ _h | _t ]), do: false
+  def list_equal([ _h | _t ], []), do: false
+
+  def list_equal([ h | t1 ], [ h | t2 ]), do: list_equal(t1, t2)
+  def list_equal([ _h1 | _t1 ], [ _h2 | _t2 ]), do: false
 
   ##############################################################################
   # 3.4:  5 points #
@@ -152,9 +172,59 @@ defmodule Ex03 do
 
   Think a little about a nice way to lay this code out.
   """
+  # Horizontal wins
+  def won({
+    win, win, win,
+     _ ,  _ ,  _ ,
+     _ ,  _ ,  _
+  }), do: win
 
-  def won . . . "your code"
+  def won({
+     _ ,  _ ,  _ ,
+    win, win, win,
+     _ ,  _ ,  _
+  }), do: win
 
+  def won({
+     _ ,  _ ,  _ ,
+     _ ,  _ ,  _ ,
+    win, win, win
+  }), do: win
+
+  # Vertical wins
+  def won({
+    win, _ ,  _ ,
+    win, _ ,  _ ,
+    win, _ ,  _
+  }), do: win
+
+  def won({
+     _ , win, _ ,
+     _ , win, _ ,
+     _ , win, _
+  }), do: win
+
+  def won({
+     _ , _ , win,
+     _ , _ , win,
+     _ , _ , win
+  }), do: win
+
+  # Diagonal wins
+  def won({
+    win,  _ ,  _ ,
+     _ , win,  _ ,
+     _ ,  _ , win
+  }), do: win
+
+  def won({
+     _ ,  _ , win,
+     _ , win,  _ ,
+    win,  _ ,  _
+  }), do: win
+
+  # Anything else - no win
+  def won(_), do: false
 
   ###########################
   # IGNORE FROM HERE TO END #
