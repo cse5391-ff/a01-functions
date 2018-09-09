@@ -62,10 +62,10 @@ defmodule Ex03 do
   def odd_even([]),             do: []
   def odd_even([head | tail]),  do: [odd_even_atom(head) | odd_even(tail)]
 
-  def odd_even_atom(head) when Integer.is_even(head) do
+  def odd_even_atom(head) when is_integer(head) and Integer.is_even(head) do
     :even
   end
-  def odd_even_atom(head) when Integer.is_odd(head)  do
+  def odd_even_atom(head) when is_integer(head) and Integer.is_odd(head)  do
     :odd
   end
 
@@ -166,6 +166,10 @@ defmodule Ex03 do
 
   Think a little about a nice way to lay this code out.
   """
+
+  def won(board) do
+    
+  end
 
   def won({p, p, p,
            _, _, _,
