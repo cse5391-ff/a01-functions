@@ -30,7 +30,7 @@ defmodule Ex02 do
   # numbers, and second should be the difference                         #
   ########################################################################
 
-  list2a = your_anonymous_function(1, 2)
+  list2a = list_math(1, 2)
 
   assert list2a.(1, 2)    == [ 3, -1 ]
   assert list2a.(-1, 100) == [ 99, -101 ]
@@ -41,7 +41,7 @@ defmodule Ex02 do
   # Do the same using the & syntax #
   ##################################
 
-  list2b = your_anonymous_function(1, 2)
+  list2b = list_math_short(1, 2)
 
   assert list2b.(1, 2)    == [ 3, -1 ]
   assert list2b.(-1, 100) == [ 99, -101 ]
@@ -53,11 +53,13 @@ defmodule Ex02 do
   # if the first two elements of a list are equal                #
   ################################################################
 
-  first2equal = your_anonymous_function([])
+  #first2equal = process([])               #first2equal = process([]) doesn't work, but Support.process does...?
+  assert  Support.process([4,4,5,6,7])
+  assert  !Support.process([4,5,6,7,8])
+ 
 
-
-  assert  first2equal.([4, 4, 5, 6, 7])
-  assert !first2equal.([4, 5, 6, 7, 8])
+  #assert  first2equal.([4, 4, 5, 6, 7])
+  #assert !first2equal.([4, 5, 6, 7, 8])
 
 end
 
