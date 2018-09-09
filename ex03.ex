@@ -36,9 +36,9 @@ defmodule Ex03 do
 
 
 
-     V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
-     ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
+        V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
+  > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+        ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
   ##############################################################################
@@ -59,8 +59,17 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def odd_even( [] ), do: []
 
+  def odd_even( list ) do
+    [ currElement | rest ] = list
+
+    if ( Integer.is_even( currElement ) ) do
+      [ :even | odd_even( rest ) ]
+    else
+      [ :odd | odd_even( rest ) ]
+    end
+  end
 
   ##############################################################################
   # 3.2:  5 points #
@@ -81,7 +90,17 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains( [], _value ), do: false
+
+  def list_contains( list, value ) do
+    [ currElement | rest ] = list
+
+    if ( currElement == value ) do
+      true
+    else
+      rest |> list_contains( value )
+    end
+  end
 
   ##############################################################################
   # 3.3:  5 points #
@@ -105,9 +124,20 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+  def list_equal( []    , []     ), do: true 
+  def list_equal( []    , _list2 ), do: false
+  def list_equal( _list1, []     ), do: false
 
-
+  def list_equal( list1, list2 ) do
+    [ currElement1 | rest1 ] = list1
+    [ currElement2 | rest2 ] = list2
+    
+    if ( currElement1 != currElement2 ) do
+      false
+    else
+      list_equal( rest1, rest2 )    
+    end
+  end
 
   ##############################################################################
   # 3.4:  5 points #
@@ -153,8 +183,18 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  def won( { a, a, a,  _, _, _,  _, _, _ } ), do: a
+  def won( { _, _, _,  a, a, a,  _, _, _ } ), do: a
+  def won( { _, _, _,  _, _, _,  a, a, a } ), do: a
 
+  def won( { a, _, _,  a, _, _,  a, _, _ } ), do: a
+  def won( { _, a, _,  _, a, _,  _, a, _ } ), do: a
+  def won( { _, _, a,  _, _, a,  _, _, a } ), do: a
+
+  def won( { a, _, _,  _, a, _,  _, _, a } ), do: a
+  def won( { _, _, a,  _, a, _,  a, _, _ } ), do: a
+  
+  def won( { _, _, _,  _, _, _,  _, _, _ } ), do: false
 
   ###########################
   # IGNORE FROM HERE TO END #

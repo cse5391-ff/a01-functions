@@ -27,7 +27,6 @@ defmodule Ex04 do
   def reduce([ ], state, _func),       do: state
   def reduce([ h | t ], state, func),  do: reduce(t, func.(h, state), func)
 
-
   ##############################################################################
   # 4.1:  5 points #
   ##################
@@ -39,7 +38,8 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
-  def reverse . . . "your code"
+
+  def reverse( list ), do: list |> reduce( [], &[ &1 | &2 ] )
 
   ##############################################################################
   # 4.2:  5 points #
@@ -55,7 +55,17 @@ defmodule Ex04 do
 
   """
 
-  def min . . . "your code"
+  def min( [ head | tail ] ) do
+    func = fn( a, b ) ->
+        if( a < b ) do
+            a
+        else
+            b
+        end
+    end
+
+    reduce( tail, head, func )
+  end
 
   ##############################################################################
   # 4.3: 10 points #
@@ -75,10 +85,24 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def even_odd . . . "your code"
+  def even_odd( list ) do
+    {
+        list |> map_on_condition( &Integer.is_even/1 ),
+        list |> map_on_condition( &Integer.is_odd/1  ) 
+    }
+  end
 
+  defp map_on_condition( [ head | tail ], func ) do
+    if( head |> func.() ) do 
+        [ head | tail |> map_on_condition( func ) ]
+    else
+        tail |> map_on_condition( func )
+    end
+  end
 
-
+  defp map_on_condition( [], _func ) do
+    []
+  end
 
   ###########################
   # IGNORE FROM HERE TO END #
