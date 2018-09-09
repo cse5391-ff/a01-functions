@@ -55,9 +55,10 @@ defmodule Ex04 do
 
   """
 
-  def lesser(a, b) when a < b, do: a
-  def lesser(a, b) when b < a, do: b
-  def min(list), do: reduce list, &lesser/2
+  def lesser(a, b) when a < b,  do: a
+  def lesser(a, b) when b < a,  do: b
+
+  def min(list),  do: reduce list, &lesser/2
 
   ##############################################################################
   # 4.3: 10 points #
@@ -77,9 +78,14 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def even_odd_check(head, {even, odd}) when Integer.is_even(head), do: {even ++ [head], odd}
-  def even_odd_check(head, {even, odd}) when Integer.is_odd(head), do: {even, odd ++ [head]}
-  def even_odd(list), do: reduce list, {[], []}, &even_odd_check/2
+  def even_odd_check(head, {even, odd}) when Integer.is_even(head) do
+    {even ++ [head], odd}
+  end
+  def even_odd_check(head, {even, odd}) when Integer.is_odd(head)  do
+    {even, odd ++ [head]}
+  end
+
+  def even_odd(list),  do: reduce list, {[], []}, &even_odd_check/2
 
   ###########################
   # IGNORE FROM HERE TO END #

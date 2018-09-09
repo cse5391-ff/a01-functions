@@ -59,10 +59,15 @@ defmodule Ex03 do
 
   """
 
-  def odd_even([]), do: []
-  def odd_even([head | tail]), do: [odd_even_atom(head) | odd_even(tail)]
-  def odd_even_atom(head) when Integer.is_even(head), do: :even
-  def odd_even_atom(head) when Integer.is_odd(head), do: :odd
+  def odd_even([]),             do: []
+  def odd_even([head | tail]),  do: [odd_even_atom(head) | odd_even(tail)]
+
+  def odd_even_atom(head) when Integer.is_even(head) do
+    :even
+  end
+  def odd_even_atom(head) when Integer.is_odd(head)  do
+    :odd
+  end
 
   ##############################################################################
   # 3.2:  5 points #
@@ -83,9 +88,9 @@ defmodule Ex03 do
 
   """
 
-  def list_contains([], _), do: false
-  def list_contains([val | _tail], val), do: true
-  def list_contains([_head | tail], val), do: list_contains(tail, val)
+  def list_contains([], _),                do: false
+  def list_contains([val | _tail], val),   do: true
+  def list_contains([_head | tail], val),  do: list_contains(tail, val)
 
   ##############################################################################
   # 3.3:  5 points #
@@ -112,11 +117,11 @@ defmodule Ex03 do
   # Recursively pattern match the heads of both lists
   # until a mismatch is found or the end of a list is reached
 
-  def list_equal([], []), do: true
-  def list_equal([_head | _tail], []), do: false
-  def list_equal([], [_head | _tail]), do: false
-  def list_equal([head | tail1], [head | tail2]), do: list_equal(tail1, tail2)
-  def list_equal([_ | _], [_ | _]), do: false
+  def list_equal([], []),                          do: true
+  def list_equal([_head | _tail], []),             do: false
+  def list_equal([], [_head | _tail]),             do: false
+  def list_equal([head | tail1], [head | tail2]),  do: list_equal(tail1, tail2)
+  def list_equal([_ | _], [_ | _]),                do: false
 
   ##############################################################################
   # 3.4:  5 points #
@@ -164,45 +169,37 @@ defmodule Ex03 do
 
   def won({p, p, p,
            _, _, _,
-           _, _, _}),
-    do: p
+           _, _, _}),  do: p
 
   def won({_, _, _,
            p, p, p,
-           _, _, _}),
-    do: p
+           _, _, _}),  do: p
 
   def won({_, _, _,
            _, _, _,
-           p, p, p}),
-    do: p
+           p, p, p}),  do: p
 
   def won({p, _, _,
            p, _, _,
-           p, _, _}),
-    do: p
+           p, _, _}),  do: p
 
   def won({_, p, _,
            _, p, _,
-           _, p, _}),
-    do: p
+           _, p, _}),  do: p
 
   def won({_, _, p,
            _, _, p,
-           _, _, p}),
-    do: p
+           _, _, p}),  do: p
 
   def won({p, _, _,
            _, p, _,
-           _, _, p}),
-    do: p
+           _, _, p}),  do: p
 
   def won({_, _, p,
            _, p, _,
-           p, _, _}),
-    do: p
+           p, _, _}),  do: p
 
-  def won(_), do: false
+  def won(_),          do: false
 
   ###########################
   # IGNORE FROM HERE TO END #
