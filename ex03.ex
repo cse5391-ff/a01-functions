@@ -167,41 +167,41 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won(board) do
-    
-  end
+  def check_move(:x),  do: :x
+  def check_move(:o),  do: :o
+  def check_move(_),   do: false
 
   def won({p, p, p,
            _, _, _,
-           _, _, _}),  do: p
+           _, _, _}),  do: p |> check_move
 
   def won({_, _, _,
            p, p, p,
-           _, _, _}),  do: p
+           _, _, _}),  do: p |> check_move
 
   def won({_, _, _,
            _, _, _,
-           p, p, p}),  do: p
+           p, p, p}),  do: p |> check_move
 
   def won({p, _, _,
            p, _, _,
-           p, _, _}),  do: p
+           p, _, _}),  do: p |> check_move
 
   def won({_, p, _,
            _, p, _,
-           _, p, _}),  do: p
+           _, p, _}),  do: p |> check_move
 
   def won({_, _, p,
            _, _, p,
-           _, _, p}),  do: p
+           _, _, p}),  do: p |> check_move
 
   def won({p, _, _,
            _, p, _,
-           _, _, p}),  do: p
+           _, _, p}),  do: p |> check_move
 
   def won({_, _, p,
            _, p, _,
-           p, _, _}),  do: p
+           p, _, _}),  do: p |> check_move
 
   def won(_),          do: false
 
