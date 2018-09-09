@@ -85,50 +85,24 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def map( [ head | tail ], func ) do
-    [ func.( head ) | map( tail, func ) ]
-  end
-
-  def map( [], _func ) do
-    []
-  end
-
   def even_odd( list ) do
-    even_func = fn num ->
-        if( num |> Integer.is_even ) do
-            num
-        end
-    end
-
-    odd_func = fn num ->
-        if( num |> Integer.is_odd ) do
-            num
-        end
-    end
-
-    remove_nill = fn(n, list) ->
-        if ( n ) do
-            [ n | list ]
-        else
-            list
-        end 
-    end
-
     {
-        list 
-            |> map( even_func ) 
-            |> reduce( [], remove_nill ) 
-            |> reverse,
-
-        list 
-            |> map( odd_func ) 
-            |> reduce( [], remove_nill ) 
-            |> reverse
+        list |> map_on_condition( &Integer.is_even/1 ),
+        list |> map_on_condition( &Integer.is_odd/1  ) 
     }
   end
 
+  defp map_on_condition( [ head | tail ], func ) do
+    if( head |> func.() ) do 
+        [ head | tail |> map_on_condition( func ) ]
+    else
+        tail |> map_on_condition( func )
+    end
+  end
 
-
+  defp map_on_condition( [], _func ) do
+    []
+  end
 
   ###########################
   # IGNORE FROM HERE TO END #
