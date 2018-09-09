@@ -1,5 +1,5 @@
-ExUnit.start()
-Code.load_file("support.ex")
+ExUnit.start
+Code.load_file "support.ex"
 
 defmodule Ex01 do
   use ExUnit.Case
@@ -48,7 +48,7 @@ defmodule Ex01 do
 
   sum2b = &(&1 + &2)
 
-  assert sum2b.(1, 2) == 3
+  assert sum2b.(1, 2)    == 3
   assert sum2b.(-1, 100) == 99
 
   ##################
@@ -64,7 +64,7 @@ defmodule Ex01 do
   end
 
 
-  assert sum3a.(1, 3, 5) == 9
+  assert sum3a.(1, 3, 5)  == 9
   assert sum3a.(1, -3, 5) == 3
 
   ##################
@@ -75,7 +75,7 @@ defmodule Ex01 do
 
   sum3b = &(sum2b.(&1, &2) |> sum2b.(&3))
 
-  assert sum3b.(1, 3, 5) == 9
+  assert sum3b.(1, 3, 5)  == 9
   assert sum3b.(1, -3, 5) == 3
 
   ##################
@@ -90,9 +90,9 @@ defmodule Ex01 do
 
   create_adder = fn a -> (fn b -> a + b end) end
 
-  add_2 = create_adder.(2)
+  add_2  = create_adder.(2)
   add_99 = create_adder.(99)
 
-  assert add_2.(3) == 5
+  assert add_2.(3)  == 5
   assert add_99.(3) == 102
 end
