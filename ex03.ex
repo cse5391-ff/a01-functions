@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+  > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -58,8 +58,11 @@ defmodule Ex03 do
   be used if needed.)
 
   """
+  def handle_individual_odd_even(true), do: :even
+  def handle_individual_odd_even(false), do: :odd
 
-  def odd_even . . . "your code"
+  def odd_even([]), do: []
+  def odd_even([ h | t ]), do: [ handle_individual_odd_even(Integer.is_even(h)) | odd_even(t) ]
 
 
   ##############################################################################
@@ -81,7 +84,9 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains([], _val), do: false
+  def list_contains([ h | _t ], h), do: true
+  def list_contains([ _h | t ], val), do: list_contains(t, val)
 
   ##############################################################################
   # 3.3:  5 points #
@@ -105,9 +110,11 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+  def list_equal([], []), do: true
+  def list_equal([], [ _h | _t ]), do: false
+  def list_equal([ _h | _t ], []), do: false
 
-
+  def list_equal([ h1 | t1 ], [ h2 | t2 ]), do: (h1==h2 && list_equal(t1, t2))
 
   ##############################################################################
   # 3.4:  5 points #
@@ -152,8 +159,61 @@ defmodule Ex03 do
 
   Think a little about a nice way to lay this code out.
   """
+  # Here, "m" represents a marker to pattern match the x and o markers.
 
-  def won . . . "your code"
+  def won({
+          m, m, m,
+          _, _, _,
+          _, _, _,
+          }), do: m
+
+  def won({
+          _, _, _,
+          m, m, m,
+          _, _, _,
+          }), do: m
+
+  def won({
+          _, _, _,
+          _, _, _,
+          m, m, m,
+        }), do: m
+
+  def won({
+          m, _, _,
+          m, _, _,
+          m, _, _,
+        }), do: m
+
+  def won({
+          _, m, _,
+          _, m, _,
+          _, m, _,
+        }), do: m
+
+  def won({
+          _, _, m,
+          _, _, m,
+          _, _, m,
+        }), do: m
+
+  def won({
+          m, _, _,
+          _, m, _,
+          _, _, m,
+        }), do: m
+
+  def won({
+          _, _, m,
+          _, m, _,
+          m, _, _,
+        }), do: m
+
+  def won({
+          _, _, _,
+          _, _, _,
+          _, _, _,
+        }), do: false
 
 
   ###########################

@@ -36,7 +36,8 @@ defmodule Ex00 do
   # Write a function that increments its numeric parameter #
   ##########################################################
 
-  inc = your_anonymous_function(1)
+  # Shorthand anonymous function that takes the first parameter and increments it by one
+  inc = &(&1 + 1)
 
   assert inc.(2)  == 3
   assert inc.(-1) == 0
