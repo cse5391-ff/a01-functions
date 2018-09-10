@@ -39,6 +39,7 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
+
   def reverse([ ]), do: reduce([ ], [ ], &[ &1 | &2 ])
   def reverse(list), do: reduce(list, [ ], &[ &1 | &2 ])
 
@@ -56,6 +57,7 @@ defmodule Ex04 do
 
   """
 
+  # Two helper functions to evaluate whether the minumum of two values
   def min_helper(val1, val2) when val1 < val2, do: val1
   def min_helper(val1, val2) when val1 >= val2, do: val2
 
