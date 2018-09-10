@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+  > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -59,8 +59,11 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
-
+  def odd_even([]), do: []
+  def odd_even([h | t]), do: [is_even_update(Integer.is_even(h)) | odd_even(t)]
+  
+  def is_even_update(true), do: :even
+  def is_even_update(false), do: :odd
 
   ##############################################################################
   # 3.2:  5 points #
@@ -81,7 +84,9 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains([], _val), do: false
+  def list_contains([val | _t], val), do: true
+  def list_contains([_h | t], val), do: t |> list_contains(val)
 
   ##############################################################################
   # 3.3:  5 points #
@@ -105,7 +110,12 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+  #Check each element until mismatch found or reach end of list
+  def list_equal([], []), do: true
+  def list_equal([_h | _t], []), do: false
+  def list_equal([], [_h | _t]), do: false
+  def list_equal([h | t1], [h | t2]), do: list_equal(t1, t2)
+  def list_equal([_ | _], [_ | _]), do: false
 
 
 
@@ -153,7 +163,56 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+    def won({
+    val, val, val,
+     _ ,  _ ,  _ ,
+     _ ,  _ ,  _
+    }), do: val
+
+    def won({
+     _ ,  _ ,  _ ,
+    val, val, val,
+     _ ,  _ ,  _
+    }), do: val
+
+    def won({
+     _ ,  _ ,  _ ,
+     _ ,  _ ,  _ ,
+    val, val, val
+    }), do: val
+
+    def won({
+    val, _ ,  _ ,
+    val, _ ,  _ ,
+    val, _ ,  _
+    }), do: val
+
+    def won({
+     _ , val, _ ,
+     _ , val, _ ,
+     _ , val, _
+    }), do: val
+
+    def won({
+     _ , _ , val,
+     _ , _ , val,
+     _ , _ , val
+    }), do: val
+
+    def won({
+    val,  _ ,  _ ,
+     _ , val,  _ ,
+     _ ,  _ , val
+     }), do: val
+
+    def won({
+     _ ,  _ , val,
+     _ , val,  _ ,
+    val,  _ ,  _
+    }), do: val
+
+    #Cat's game
+    def won(_), do: false
 
 
   ###########################
