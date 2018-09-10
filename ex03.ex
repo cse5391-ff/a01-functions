@@ -36,9 +36,9 @@ defmodule Ex03 do
 
 
 
-     V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
-     ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
+        V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
+    > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+        ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
   ##############################################################################
@@ -54,12 +54,30 @@ defmodule Ex03 do
       iex> Ex03.odd_even [ 1, 2, 4, 7, 9 ]
       [ :odd, :even, :even, :odd, :odd ]
 
+      iex> Ex03.odd_even [ 3, 5, 7 ]
+      [ :odd, :odd, :odd ]
+
+      iex> Ex03.odd_even [ 2, 12 ]
+      [ :even, :even ]
+
+      iex> Ex03.odd_even [ 0 ]
+      [ :even ]
+
+      iex> Ex03.odd_even [ ]
+      [ ]
+
   (The library functions `Integer.is_even` and `Integer.is_odd` may
   be used if needed.)
 
   """
 
-  def odd_even . . . "your code"
+  def odd_even([]), do: []
+  def odd_even([h | t]) do
+    cond do
+        Integer.is_even(h) -> [:even | odd_even(t)]
+        true -> [:odd | odd_even(t)]
+    end
+  end
 
 
   ##############################################################################
@@ -73,15 +91,27 @@ defmodule Ex03 do
       iex> Ex03.list_contains([ 1, 2, 3, 4], 3)
       true
 
-      iex> Ex03.list_contains([ 1, 2, 3, 4], 3)
+      iex> Ex03.list_contains([ 2.25, 3.2, 1,2 ], 3)
+      false
+
+      iex> Ex03.list_contains([ 1, 3.5, 2.24, 3 ], 3)
       true
 
-      iex> Ex03.list_contains([ 1, 2, 3, 4], 3)
-      true
+      iex> Ex03.list_contains([ ], 4)
+      false
+
+      iex> Ex03.list_contains([ ], nil)
+      false
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains([], _n), do: false
+  def list_contains([h | t], n) do
+    cond do
+        h == n -> true
+        true -> list_contains(t, n)
+    end
+  end
 
   ##############################################################################
   # 3.3:  5 points #
@@ -96,16 +126,32 @@ defmodule Ex03 do
   a function that checks for the equality of two lists. You don't
   need to consider nested lists.
 
-      iex> Ex03.list_equal [ 1, 2, 3 ], [1, 2, 3]
+      iex> Ex03.list_equal [ 1, 2, 3 ], [ 1, 2, 3 ]
       true
-      iex> Ex03.list_equal [ 1, 2, 3 ], [1, 2, 3, 4]
+      iex> Ex03.list_equal [ 1, 2, 3 ], [ 1, 2, 3, 4 ]
       false
-      iex> Ex03.list_equal [ 1, 2, 3 ], [3, 2, 1]
+      iex> Ex03.list_equal [ 1, 2, 3 ], [ 3, 2, 1 ]
       false
+      iex> Ex03.list_equal [ 1, 3, 5, 7 ], [ ]
+      false
+      iex> Ex03.list_equal [ ], [ 2, 4, 6, 8 ]
+      false
+      iex> Ex03.list_equal [ 1 ], [ 2 ]
+      false
+      iex> Ex03.list_equal [ ], [ ]
+      true
 
   """
 
-  def list_equal . . . "your code"
+  def list_equal([], []), do: true
+  def list_equal([], [_h | _t]), do: false
+  def list_equal([_h | _t], []), do: false
+  def list_equal([h1 | t1], [h2 | t2]) do
+    cond do
+        h1 != h2 -> false
+        true -> list_equal(t1, t2)
+    end
+  end
 
 
 
@@ -150,10 +196,41 @@ defmodule Ex03 do
       iex> Ex03.won { :o, :x, 3,   :x, :o, 6,   :x, :o, 9 }
       false
 
+      iex> Ex03.won { :x, :o, :x,   :x, :x, :o,   :o, :o, :x }
+      :x
+
+      iex> Ex03.won { :o, :x, :x,   :x, :x, :o,   :o, :o, :o }
+      :o
+
+      iex> Ex03.won { 1, :x, :x,   :x, :x, 6,   :x, 8, 9 }
+      :x
+
+      iex> Ex03.won { :o, :x, :x,   :x, :x, :o,   :o, :o, :x }
+      false
+
+      iex> Ex03.won { 1, :o, 3,   4, 5, 6,   7, :o, 9 }
+      false
+
+      iex> Ex03.won { 1, 2, 3,   4, 5, 6,   7, 8, 9 }
+      false
+
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  def won(tuple) do
+    case tuple do
+        {z, z, z, _, _, _, _, _, _} -> z
+        {_, _, _, z, z, z,  _, _, _} -> z
+        {_, _, _, _, _, _, z, z, z} -> z
+        {z, _, _, z, _, _, z, _, _} -> z
+        {_, z, _, _, z, _, _, z, _} -> z
+        {_, _, z, _, _, z, _, _, z} -> z
+        {z, _, _, _, z, _, _, _, z} -> z
+        {_, _, z, _, z, _, z, _, _} -> z
+        _ -> false
+    end
+  end
+  # 123 / 456 / 789 / 147 / 258 / 369 / 159 / 357
 
 
   ###########################

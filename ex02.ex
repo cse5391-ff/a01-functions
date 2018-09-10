@@ -3,7 +3,7 @@ Code.load_file "support.ex"
 
 defmodule Ex02 do
   use ExUnit.Case
-  import Support
+  # import Support
 
   ##############################################################################
   # 2: 3 questions,  15 points available
@@ -30,10 +30,12 @@ defmodule Ex02 do
   # numbers, and second should be the difference                         #
   ########################################################################
 
-  list2a = your_anonymous_function(1, 2)
+  list2a = fn (x, y) -> [x+y, x-y] end
 
   assert list2a.(1, 2)    == [ 3, -1 ]
   assert list2a.(-1, 100) == [ 99, -101 ]
+  assert list2a.(0, 0) == [ 0, 0 ]
+  assert list2a.(-22, -3) == [ -25, -19 ]
 
   ##################
   # 2.2:  5 points #
@@ -41,10 +43,12 @@ defmodule Ex02 do
   # Do the same using the & syntax #
   ##################################
 
-  list2b = your_anonymous_function(1, 2)
+  list2b = &([&1+&2, &1-&2])
 
   assert list2b.(1, 2)    == [ 3, -1 ]
   assert list2b.(-1, 100) == [ 99, -101 ]
+  assert list2b.(0, 0) == [ 0, 0 ]
+  assert list2b.(-22, -3) == [ -25, -19 ]
 
   ##################
   # 2.3:  5 points #
@@ -53,11 +57,14 @@ defmodule Ex02 do
   # if the first two elements of a list are equal                #
   ################################################################
 
-  first2equal = your_anonymous_function([])
+  first2equal = fn ([x, y | _list]) -> x == y end
 
 
   assert  first2equal.([4, 4, 5, 6, 7])
   assert !first2equal.([4, 5, 6, 7, 8])
+  assert  first2equal.([1.52, 1.52])
+  assert first2equal.([0, -0])
+  assert !first2equal.([1, -60])
 
 end
 

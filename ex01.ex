@@ -3,7 +3,7 @@ Code.load_file "support.ex"
 
 defmodule Ex01 do
   use ExUnit.Case
-  import Support
+  # import Support
 
   ##############################################################################
   # 1: 5 questions,  30 points available                                       #
@@ -36,10 +36,13 @@ defmodule Ex01 do
   # Write a function that adds two numbers using fn syntax #
   ##########################################################
 
-  sum2a = your_anonymous_function(1, 2)
+  sum2a = fn (x, y) -> x + y end
 
   assert sum2a.(1, 2)    == 3
   assert sum2a.(-1, 100) == 99
+  assert sum2a.(-1.25, 1) == -0.25
+  assert sum2a.(-1, 1) == 0
+  assert sum2a.(0, 0) == 0
 
   ##################
   # 1.2:  5 points #
@@ -47,10 +50,13 @@ defmodule Ex01 do
   # Write a function that adds two numbers using & syntax  #
   ##########################################################
 
-  sum2b = your_anonymous_function(1, 2)
+  sum2b = &(&1 + &2)
 
   assert sum2b.(1, 2)    == 3
   assert sum2b.(-1, 100) == 99
+  assert sum2b.(-1.25, 1) == -0.25
+  assert sum2b.(-1, 1) == 0
+  assert sum2b.(0, 0) == 0
 
   ##################
   # 1.3:  5 points #
@@ -60,10 +66,12 @@ defmodule Ex01 do
   # no explicit + operators in your function                          #
   #####################################################################
 
-  sum3a = your_anonymous_function(1, 2, 3)
+  sum3a = fn (x, y, z) -> sum2a.(sum2a.(x, y), z) end
 
   assert sum3a.(1, 3, 5)  == 9
   assert sum3a.(1, -3, 5) == 3
+  assert sum3a.(-1.25, 1.75, 0.5) == 1
+  assert sum3a.(-1, 0, 1) == 0
 
   ##################
   # 1.4:  5 points #
@@ -71,10 +79,12 @@ defmodule Ex01 do
   # Do the same using the & notation #
   ####################################
 
-  sum3b = your_anonymous_function
+  sum3b = &(sum2a.(sum2a.(&1, &2), &3))
 
   assert sum3b.(1, 3, 5)  == 9
   assert sum3b.(1, -3, 5) == 3
+  assert sum3b.(-1.25, 1.75, 0.5) == 1
+  assert sum3b.(-1, 0, 1) == 0
 
   ##################
   # 1.5: 10 points #
@@ -86,13 +96,17 @@ defmodule Ex01 do
   # function. The examples below will make this clearer :)               #
   ########################################################################
 
-  create_adder = your_anonymous_function(1)
+  create_adder = fn (num) ->
+    fn (val) -> num + val end
+  end
 
   add_2  = create_adder.(2)
   add_99 = create_adder.(99)
+  add_0 = create_adder.(0)
 
   assert add_2.(3)  == 5
   assert add_99.(3) == 102
+  assert add_0.(-25) == -25
 
 end
 
