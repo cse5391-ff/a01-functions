@@ -39,7 +39,8 @@ defmodule Ex04 do
       [ 1, 2, 3, 4, 5 ]
 
   """
-  def reverse . . . "your code"
+  def reverse([ ]), do: reduce([ ], [ ], &[ &1 | &2 ])
+  def reverse(list), do: reduce(list, [ ], &[ &1 | &2 ])
 
   ##############################################################################
   # 4.2:  5 points #
@@ -55,7 +56,10 @@ defmodule Ex04 do
 
   """
 
-  def min . . . "your code"
+  def min_helper(val1, val2) when val1 < val2, do: val1
+  def min_helper(val1, val2) when val1 >= val2, do: val2
+
+  def min(list), do: reduce(list, fn (value, min_so_far) -> min_helper(value, min_so_far) end)
 
   ##############################################################################
   # 4.3: 10 points #
@@ -74,11 +78,15 @@ defmodule Ex04 do
   helps you do that. And, if you use that function, what does it return? That
   return value will be the thing you have to manipulate.
   """
+  # Used the ++ operator found here: https://elixir-lang.org/getting-started/basic-operators.html
+  # (note to grader: I tried to pattern match within the brackets like {even_state | val} or
+  # {[val | even_state]} but it didn't work. So I used ++)
 
-  def even_odd . . . "your code"
+  def even_odd_helper(val, {even_state, odd_state}) when Integer.is_even(val), do: {even_state ++ [val], odd_state}
+  def even_odd_helper(val, {even_state, odd_state}) when Integer.is_odd(val),  do: {even_state, odd_state ++ [val]}
 
-
-
+  def even_odd([ ]), do: { [ ], [ ] }
+  def even_odd(list), do: reduce(list, { [ ], [ ] }, &even_odd_helper/2)
 
   ###########################
   # IGNORE FROM HERE TO END #
