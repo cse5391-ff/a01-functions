@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+     > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -59,7 +59,11 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def odd_even([]), do: []
+  def odd_even([ h | t ]), do: [ check_odd(Integer.is_odd(h)) | odd_even(t) ]
+
+  def check_odd(true), do: :odd
+  def check_odd(false), do: :even
 
 
   ##############################################################################
@@ -81,7 +85,9 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains([], _val), do: false
+  def list_contains([ val | _t ], val), do: true
+  def list_contains([ _h | t ], val), do: list_contains(t, val)
 
   ##############################################################################
   # 3.3:  5 points #
@@ -105,7 +111,12 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+  def list_equal([], []), do: true
+  def list_equal([h], [h]), do: true
+  def list_equal([ h | t1 ], [ h | t2 ]), do: list_equal(t1, t2)
+  def list_equal([ _h1 | _t1 ], [ _h2 | _t2 ]), do: false
+  def list_equal([], [ _ | _ ]), do: false
+  def list_equal([ _ | _ ], []), do: false
 
 
 
@@ -153,7 +164,15 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  def won({ x, x, x, _, _, _, _, _, _ }), do: x
+  def won({ _, _, _, x, x, x, _, _, _ }), do: x
+  def won({ _, _, _, _, _, _, x, x, x }), do: x
+  def won({ x, _, _, x, _, _, x, _, _ }), do: x
+  def won({ _, x, _, _, x, _, _, x, _ }), do: x
+  def won({ _, _, x, _, _, x, _, _, x }), do: x
+  def won({ x, _, _, _, x, _, _, _, x }), do: x
+  def won({ _, _, x, _, x, _, x, _, _ }), do: x
+  def won( _ ), do: false
 
 
   ###########################
