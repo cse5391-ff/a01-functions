@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+    > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -59,7 +59,21 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def odd_even([head | tail]) do
+    if Integer.is_odd(head) && tail == [] do
+     [:odd]
+     else if Integer.is_odd(head) do
+      [:odd | odd_even(tail)]
+    else
+      if Integer.is_even(head) && tail == [] do
+        [:even]
+      else
+        [:even | odd_even(tail)]
+      end
+      end
+    end
+  end
+
 
 
   ##############################################################################
@@ -81,7 +95,9 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains([head | tail], val) do
+    val in [head | tail]
+  end
 
   ##############################################################################
   # 3.3:  5 points #
@@ -104,8 +120,16 @@ defmodule Ex03 do
       false
 
   """
-
-  def list_equal . . . "your code"
+  
+  def list_equal([], []) do
+    true
+  end
+  def list_equal([], [_]) do
+    false
+  end
+  def list_equal([head1 | tail1], [head2 | tail2]) do
+    head1 == head2 && list_equal(tail1, tail2)
+  end
 
 
 
@@ -144,7 +168,7 @@ defmodule Ex03 do
       iex> Ex03.won { :x, :o, 3,   :x, 5, :o,   :x, 8, :o }
       :x
 
-      iex> Ex03.won { :o, :x, 3,   :x, :o, 6,   :x, 5, :o }
+      iex> Ex03.won { :o, :x, 3,   :x, :o, 6,   :x, 8, :o }
       :o
 
       iex> Ex03.won { :o, :x, 3,   :x, :o, 6,   :x, :o, 9 }
@@ -153,7 +177,33 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  def won({ a, _, _, a, _, _, a, _, _}) do
+    a
+  end
+  def won({ _, a, _, _, a, _, _, a, _}) do
+    a
+  end
+  def won({ _, _, a, _, _, a, _, _, a}) do
+    a
+  end
+  def won({ a, a, a, _, _, _, _, _, _}) do
+    a
+  end
+  def won({ _, _, _, a, a, a, _, _, _}) do
+    a
+  end
+  def won({ _, _, _, _, _, _, a, a, a}) do
+    a
+  end
+  def won({ _, _, a, _, a, _, a, _, _}) do
+    a
+  end
+  def won({ a, _, _, _, a, _, _, _, a}) do
+    a
+  end
+  def won({ _, _, _, _, _, _, _, _, _}) do
+    false
+  end
 
 
   ###########################
