@@ -60,7 +60,7 @@ defmodule Ex03 do
   """
 
   def odd_even([ ]), do: [ ]
-  def odd_even([ h | t]), do: [helper(Integer.is_even(h)) | odd_even(t)]
+  def odd_even([h | t]), do: [helper(Integer.is_even(h)) | odd_even(t)]
   # superfluous
   # def odd_even(h), do: [helper(Integer.is_even(h))]
   def helper(true), do: :even
@@ -86,7 +86,9 @@ defmodule Ex03 do
 
   """
 
-  def list_contains
+  def list_contains([ ], _k), do: false
+  def list_contains([h | _t], h), do: true
+  def list_contains([_h | t], i), do: list_contains(t, i)
 
   ##############################################################################
   # 3.3:  5 points #
@@ -110,9 +112,10 @@ defmodule Ex03 do
 
   """
 
-  def list_equal
-
-
+  def list_equal([ ], [ ]), do: true
+  def list_equal([h], [h]), do: true
+  def list_equal([h | t1], [h | t2]), do: list_equal([t1], [t2])
+  def list_equal([_ | _], [_ | _]), do: false
 
   ##############################################################################
   # 3.4:  5 points #
