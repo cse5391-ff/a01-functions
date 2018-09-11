@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+  > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -59,7 +59,10 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def odd_even([ ]), do: [ ]
+  def odd_even([h | t]), do: [helper(Integer.is_even(h)) | odd_even(t)]
+  def helper(true), do: :even
+  def helper(false), do: :odd
 
 
   ##############################################################################
@@ -81,7 +84,9 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains([ ], _k), do: false
+  def list_contains([h | _t], h), do: true
+  def list_contains([_h | t], i), do: list_contains(t, i)
 
   ##############################################################################
   # 3.3:  5 points #
@@ -105,9 +110,10 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
-
-
+  def list_equal([ ], [ ]), do: true
+  def list_equal([h], [h]), do: true
+  def list_equal([h | t1], [h | t2]), do: list_equal([t1], [t2])
+  def list_equal([_ | _], [_ | _]), do: false
 
   ##############################################################################
   # 3.4:  5 points #
@@ -153,7 +159,39 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  def won({k, k, k,
+           _, _, _,
+           _, _, _}), do: k
+
+  def won({_, _, _,
+           k, k, k,
+           _, _, _}), do: k
+
+  def won({_, _, _,
+           _, _, _,
+           k, k, k}), do: k
+
+  def won({k, _, _,
+           k, _, _,
+           k, _, _}), do: k
+
+  def won({_, k, _,
+           _, k, _,
+           _, k, _}), do: k
+
+  def won({_, _, k,
+           _, _, k,
+           _, _, k}), do: k
+
+  def won({k, _, _,
+           _, k, _,
+           _, _, k}), do: k
+
+  def won({_, _, k,
+           _, k, _,
+           k, _, _}), do: k
+
+  def won(_), do: false
 
 
   ###########################
