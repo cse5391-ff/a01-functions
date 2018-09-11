@@ -41,7 +41,7 @@ defmodule Ex02 do
   # Do the same using the & syntax #
   ##################################
 
-  list2b = &([&1 + &2, &1 - &2])
+  list2b = &( [&1 + &2, &1 - &2] )
 
   assert list2b.(1, 2)    == [ 3, -1 ]
   assert list2b.(-1, 100) == [ 99, -101 ]
@@ -53,7 +53,7 @@ defmodule Ex02 do
   # if the first two elements of a list are equal                #
   ################################################################
 
-  first2equal = fn([h1|[h2|tail]]) -> h1 == h2 end
+  first2equal = fn( [h1 | [h2 | _tail]] ) -> h1 == h2 end
 
   assert  first2equal.([4, 4, 5, 6, 7])
   assert !first2equal.([4, 5, 6, 7, 8])
