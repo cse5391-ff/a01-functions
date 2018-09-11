@@ -56,8 +56,10 @@ defmodule Ex04 do
   """
 
   def min([h | t]), do: reduce([h | t], &smaller/2)
-  def smaller(i, k) when i > k, do: k
-  def smaller(i, k) when i < k, do: i
+  def smaller(i, k)
+    when i > k, do: k
+  def smaller(i, k)
+    when i < k, do: i
 
   ##############################################################################
   # 4.3: 10 points #
@@ -78,8 +80,10 @@ defmodule Ex04 do
   """
 
   def even_odd([h | t]), do: reduce([h | t], {[], []}, &work/2)
-  def work(k, {even, odd}) when Integer.is_even(k), do: {even++[k], odd}
-  def work(k, {even, odd}) when Integer.is_odd(k), do: {even, odd++[k]}
+  def work(k, {even, odd})
+    when Integer.is_even(k), do: {even++[k], odd}
+  def work(k, {even, odd})
+    when Integer.is_odd(k), do: {even, odd++[k]}
 
 
 
