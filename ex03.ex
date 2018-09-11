@@ -37,7 +37,7 @@ defmodule Ex03 do
 
 
      V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V  V
-> > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
+  > > > USE NO LIBRARY FUNCTIONS UNLESS EXPLICITLY NOTED. < < < <
      ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^  ^
   """
 
@@ -59,7 +59,12 @@ defmodule Ex03 do
 
   """
 
-  def odd_even . . . "your code"
+  def odd_even([ ]), do: [ ]
+  def odd_even([ h | t]), do: [helper(Integer.is_even(h)) | odd_even(t)]
+  # superfluous
+  # def odd_even(h), do: [helper(Integer.is_even(h))]
+  def helper(true), do: :even
+  def helper(false), do: :odd
 
 
   ##############################################################################
@@ -81,7 +86,7 @@ defmodule Ex03 do
 
   """
 
-  def list_contains . .. "your code"
+  def list_contains
 
   ##############################################################################
   # 3.3:  5 points #
@@ -105,7 +110,7 @@ defmodule Ex03 do
 
   """
 
-  def list_equal . . . "your code"
+  def list_equal
 
 
 
@@ -153,7 +158,7 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won . . . "your code"
+  def won
 
 
   ###########################
