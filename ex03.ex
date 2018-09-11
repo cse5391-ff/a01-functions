@@ -61,8 +61,6 @@ defmodule Ex03 do
 
   def odd_even([ ]), do: [ ]
   def odd_even([h | t]), do: [helper(Integer.is_even(h)) | odd_even(t)]
-  # superfluous
-  # def odd_even(h), do: [helper(Integer.is_even(h))]
   def helper(true), do: :even
   def helper(false), do: :odd
 
@@ -161,7 +159,39 @@ defmodule Ex03 do
   Think a little about a nice way to lay this code out.
   """
 
-  def won
+  def won({k, k, k,
+           _, _, _,
+           _, _, _}), do: k
+
+  def won({_, _, _,
+           k, k, k,
+           _, _, _}), do: k
+
+  def won({_, _, _,
+           _, _, _,
+           k, k, k}), do: k
+
+  def won({k, _, _,
+           k, _, _,
+           k, _, _}), do: k
+
+  def won({_, k, _,
+           _, k, _,
+           _, k, _}), do: k
+
+  def won({_, _, k,
+           _, _, k,
+           _, _, k}), do: k
+
+  def won({k, _, _,
+           _, k, _,
+           _, _, k}), do: k
+
+  def won({_, _, k,
+           _, k, _,
+           k, _, _}), do: k
+
+  def won(_), do: false
 
 
   ###########################
