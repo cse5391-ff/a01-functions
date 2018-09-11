@@ -77,7 +77,9 @@ defmodule Ex04 do
   return value will be the thing you have to manipulate.
   """
 
-  def even_odd
+  def even_odd([h | t]), do: reduce([h | t], {[], []}, &work/2)
+  def work(k, {even, odd}) when Integer.is_even(k), do: {even++[k], odd}
+  def work(k, {even, odd}) when Integer.is_odd(k), do: {even, odd++[k]}
 
 
 
